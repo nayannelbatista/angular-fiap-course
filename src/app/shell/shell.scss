@@ -1,0 +1,88 @@
+:host {
+  --shell-bg: #f6f8fc;
+  --shell-border: #e2e8f0;
+  --shell-accent: #4f46e5;
+  --shell-text: #0f172a;
+  --shell-text-muted: #64748b;
+
+  display: block;
+}
+
+.shell-container {
+  height: 100vh;
+  background: var(--shell-bg);
+}
+
+.shell-sidenav {
+  width: 280px;
+  padding: 1rem 0.75rem;
+  border-right: 1px solid var(--shell-border);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem 0.75rem 1.25rem;
+  margin-bottom: 0.75rem;
+
+  h1 {
+    display: block;
+    color: var(--shell-text);
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  span {
+    display: block;
+    color: var(--shell-text-muted);
+    font-size: 0.875rem;
+    margin-top: 0.15rem;
+  }
+}
+
+.brand-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: white;
+  background: linear-gradient(135deg, var(--shell-accent), #7c3aed);
+  box-shadow: 0 10px 24px rgba(79, 70, 229, 0.22);
+}
+
+.shell-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-bottom: 1px solid var(--shell-border);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  color: var(--shell-text);
+}
+
+.toolbar-title {
+  margin-left: 0.5rem;
+  font-weight: 600;
+}
+
+mat-nav-list {
+  padding-top: 0;
+}
+
+a[mat-list-item] {
+  border-radius: 16px;
+  margin-bottom: 0.35rem;
+}
+
+mat-icon[matListItemIcon] {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+[matListItemTitle] {
+  color: var(--shell-text);
+}

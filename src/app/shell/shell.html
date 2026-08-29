@@ -1,0 +1,35 @@
+<mat-sidenav-container class="shell-container">
+  <mat-sidenav #sidenav mode="side" opened class="shell-sidenav">
+    <div class="brand">
+      <div class="brand-badge">LA</div>
+      <div>
+        <h1>Library Admin</h1>
+        <span>Gestāo de acervo</span>
+      </div>
+    </div>
+
+    <mat-nav-list>
+        <a mat-list-item>
+          <mat-icon matListItemIcon>dashboard</mat-icon>
+          <span matListItemTitle>Dashboard</span>
+        </a>
+        <a mat-list-item>
+          <mat-icon matListItemIcon>menu_book</mat-icon>
+          <span matListItemTitle>Acervo</span>
+        </a>
+        <a mat-list-item>
+          <mat-icon matListItemIcon>assignment_return</mat-icon>
+          <span matListItemTitle>Empréstimos</span>
+        </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="shell-toolbar">
+      <button matIconButton (click)="sidenav.toggle()" aria-label="Menu de navegaçāo">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="toolbar-title">Library Admin</span>
+    </mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>
