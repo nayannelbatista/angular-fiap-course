@@ -13,7 +13,7 @@
           <mat-icon matListItemIcon>dashboard</mat-icon>
           <span matListItemTitle>Dashboard</span>
         </a>
-        <a mat-list-item>
+        <a mat-list-item routerLink="/books" routerLinkActive="active-link">
           <mat-icon matListItemIcon>menu_book</mat-icon>
           <span matListItemTitle>Acervo</span>
         </a>
@@ -31,5 +31,9 @@
       </button>
       <span class="toolbar-title">Library Admin</span>
     </mat-toolbar>
+
+    <main class="shell-content">
+      <router-outlet />
+    </main>
   </mat-sidenav-content>
 </mat-sidenav-container>

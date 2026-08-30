@@ -86,3 +86,20 @@ mat-icon[matListItemIcon] {
 [matListItemTitle] {
   color: var(--shell-text);
 }
+
+.shell-content {
+  padding: 1.5rem;
+}
+
+.active-link {
+  background: rgba(79, 70, 229, 0.08);
+}
+
+.active-link mat-icon[matListItemIcon] {
+  color: var(--shell-accent);
+}
+
+.active-link [matListItemTitle] {
+  color: var(--shell-accent);
+  font-weight: 600;
+}

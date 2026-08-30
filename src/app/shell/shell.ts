@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-shell',
@@ -12,8 +13,11 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,
-    MatListModule
-  ],
+    MatListModule,
+    RouterLink,
+    RouterLinkActive,
+    RouterOutlet
+],
   templateUrl: './shell.html',
   styleUrl: './shell.scss',
 })
