@@ -1,0 +1,26 @@
+  <mat-card appearance="outlined" class="filters-card">
+    <div class="filters-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Buscar por título</mat-label>
+        <input
+          matInput
+          [ngModel]="searchTerm"
+          (ngModelChange)="onSearchChange($event)"
+          placeholder="Ex.: Clean Code"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Categoria</mat-label>
+        <mat-select [ngModel]="selectedCategory" (ngModelChange)="onCategoryChange($event)">
+          <mat-option value="all">Todas</mat-option>
+
+          @for (category of categories; track category) {
+            <mat-option [value]="category">
+              {{ category }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-card>
