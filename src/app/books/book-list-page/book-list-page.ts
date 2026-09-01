@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,7 +12,7 @@ import { BooksService } from '../books.service';
 @Component({
   selector: 'app-book-list-page',
   imports: [
-    ReactiveFormsModule,
+    FormsModule,
     MatCardModule,
     MatTableModule,
     MatChipsModule,
@@ -34,24 +34,21 @@ export class BookListPage implements OnInit {
     'category',
     'isbn',
     'status'
-  ]
+  ];
   categories: string[] = [];
 
-  searchControl = new FormControl('');
-  categoryControl = new FormControl('all');
+  searchTerm = '';
+  selectedCategory = 'all';
 
   ngOnInit() {
     this.books = this.booksService.getAllBooks();
     this.filteredBooks = this.books;
     this.categories = [...new Set(this.books.map(b => b.category))];
-
-    this.searchControl.valueChanges.subscribe(() => this.filterBooks());
-    this.categoryControl.valueChanges.subscribe(() => this.filterBooks());
   }
 
   private filterBooks() {
-    const search = this.searchControl.value?.toLowerCase().trim() ?? '';
-    const category = this.categoryControl.value;
+    const search = this.searchTerm.toLowerCase().trim();
+    const category = this.selectedCategory;
 
     this.filteredBooks = this.books.filter(book => {
       const matchesSearch =
@@ -62,5 +59,15 @@ export class BookListPage implements OnInit {
 
       return matchesSearch && matchesCategory;
     });
+  }
+
+  onSearchChange(value: string) {
+    this.searchTerm = value;
+    this.filterBooks();
+  }
+
+  onCategoryChange(value: string) {
+    this.selectedCategory = value;
+    this.filterBooks();
   }
 }
