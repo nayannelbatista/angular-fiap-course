@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,15 +18,18 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrl: './book-filter.scss',
 })
 export class BookFilter {
-  categories: string[] = [];
-  searchTerm = '';
-  selectedCategory = 'all';
+  searchTerm = input('');
+  selectedCategory = input('all');
+  categories = input<string[]>();
+
+  searchChange = output<string>();
+  categoryChange = output<string>();
 
   onSearchChange(value: string) {
-    this.searchTerm = value;
+    this.searchChange.emit(value);
   }
 
   onCategoryChange(value: string) {
-    this.selectedCategory = value;
+    this.categoryChange.emit(value);
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTableModule } from '@angular/material/table';
@@ -15,7 +15,7 @@ import { Book } from '../book';
   styleUrl: './book-table.scss',
 })
 export class BookTable {
-    books: Book[] = [];
+    books = input.required<Book[]>();
     displayedColumns = [
       'title',
       'authorship',
