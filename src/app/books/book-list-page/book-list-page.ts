@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Book } from '../book';
 import { BooksService } from '../books.service';
 import { BookFilter } from "../book-filter/book-filter";
@@ -16,34 +16,33 @@ import { BookTable } from '../book-table/book-table';
 export class BookListPage implements OnInit {
   private booksService = inject(BooksService);
 
-  books: Book[] = [];
-  filteredBooks: Book[] = [];
-  categories: string[] = [];
-
-  searchTerm = '';
-  selectedCategory = 'all';
+  books = signal<Book[]>([]);
+  filteredBooks = signal<Book[]>([]);
+  categories = signal<string[]>([]);
+  searchTerm = signal<string>('');
+  selectedCategory = signal<string>('all');
 
   onSearchChange(value: string) {
-    this.searchTerm = value;
-    this.filterBooks();
+    this.searchTerm.set(value);
+    this.updateFilteredBooks();
   }
 
   onCategoryChange(value: string) {
-    this.selectedCategory = value;
-    this.filterBooks();
+    this.selectedCategory.set(value);
+    this.updateFilteredBooks();
   }
 
   ngOnInit() {
-    this.books = this.booksService.getAllBooks();
-    this.filteredBooks = this.books;
-    this.categories = [...new Set(this.books.map(b => b.category))];
+    const books = this.booksService.getAllBooks();
+    this.books.set(books);
+    this.categories.set([...new Set(this.books().map(b => b.category))]);
   }
 
-  private filterBooks() {
-    const search = this.searchTerm.toLowerCase().trim();
-    const category = this.selectedCategory;
+  private updateFilteredBooks() {
+    const search = this.searchTerm().toLowerCase().trim();
+    const category = this.selectedCategory();
 
-    this.filteredBooks = this.books.filter(book => {
+    const result = this.books().filter(book => {
       const matchesSearch =
         !search || book.title.toLowerCase().includes(search);
 
@@ -52,5 +51,7 @@ export class BookListPage implements OnInit {
 
       return matchesSearch && matchesCategory;
     });
+
+    this.filteredBooks.set(result);
   }
 }

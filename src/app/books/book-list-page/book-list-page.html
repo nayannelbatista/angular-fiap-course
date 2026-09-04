@@ -7,18 +7,18 @@
   </header>
 
   <app-book-filter
-    [searchTerm]="searchTerm"
-    [selectedCategory]="selectedCategory"
-    [categories]="categories"
+    [searchTerm]="searchTerm()"
+    [selectedCategory]="selectedCategory()"
+    [categories]="categories()"
     (searchChange)="onSearchChange($event)"
     (categoryChange)="onCategoryChange($event)"
   ></app-book-filter>
 
-  @if (filteredBooks.length === 0) {
+  @if (filteredBooks().length === 0) {
     <div class="empty-state">
       Nenhum livro encontrado para os filtros informados.
     </div>
   } @else {
-    <app-book-table [books]="filteredBooks"></app-book-table>
+    <app-book-table [books]="filteredBooks()"></app-book-table>
   }
 </section>
