@@ -17,20 +17,9 @@ export class BookListPage implements OnInit {
   private booksService = inject(BooksService);
 
   books = signal<Book[]>([]);
-  filteredBooks = signal<Book[]>([]);
   categories = signal<string[]>([]);
   searchTerm = signal<string>('');
   selectedCategory = signal<string>('all');
-
-  onSearchChange(value: string) {
-    this.searchTerm.set(value);
-    this.updateFilteredBooks();
-  }
-
-  onCategoryChange(value: string) {
-    this.selectedCategory.set(value);
-    this.updateFilteredBooks();
-  }
 
   ngOnInit() {
     const books = this.booksService.getAllBooks();
@@ -38,20 +27,15 @@ export class BookListPage implements OnInit {
     this.categories.set([...new Set(this.books().map(b => b.category))]);
   }
 
-  private updateFilteredBooks() {
+  get filteredBooks(): Book[] {
     const search = this.searchTerm().toLowerCase().trim();
     const category = this.selectedCategory();
-
-    const result = this.books().filter(book => {
+    return this.books().filter(book => {
       const matchesSearch =
         !search || book.title.toLowerCase().includes(search);
-
       const matchesCategory =
         category === 'all' || book.category === category;
-
       return matchesSearch && matchesCategory;
     });
-
-    this.filteredBooks.set(result);
   }
 }

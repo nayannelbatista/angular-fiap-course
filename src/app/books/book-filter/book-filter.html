@@ -4,15 +4,14 @@
         <mat-label>Buscar por título</mat-label>
         <input
           matInput
-          [ngModel]="searchTerm()"
-          (ngModelChange)="onSearchChange($event)"
+          [(ngModel)]="searchTerm"
           placeholder="Ex.: Clean Code"
         />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Categoria</mat-label>
-        <mat-select [ngModel]="selectedCategory" (ngModelChange)="onCategoryChange($event)">
+        <mat-select [(ngModel)]="selectedCategory">
           <mat-option value="all">Todas</mat-option>
 
           @for (category of categories(); track category) {
