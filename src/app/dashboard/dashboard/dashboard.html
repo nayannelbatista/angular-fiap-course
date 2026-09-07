@@ -1,0 +1,45 @@
+<section class="dashboard-page">
+  <section class="dashboard-hero">
+    <div class="hero-content">
+      <span class="eyebrow">Visão operacional</span>
+      <h1>Dashboard</h1>
+      <p>
+        Panorama da biblioteca com indicadores de disponibilidade e
+        distribuição por categoria.
+      </p>
+    </div>
+  </section>
+
+  <section class="hero-card">
+    <div>
+      <span class="eyebrow">Panorama atual</span>
+      <h2>{{ availableBooks }} livros disponíveis para empréstimo</h2>
+      <p>
+        O acervo possui {{ totalBooks }} livros distribuídos em
+        {{ categoriesCount }} categorias.
+      </p>
+    </div>
+  </section>
+
+  <section class="kpi-grid">
+    <article class="kpi-card">
+      <span>Total</span>
+      <strong>{{ totalBooks }}</strong>
+    </article>
+
+    <article class="kpi-card">
+      <span>Disponíveis</span>
+      <strong>{{ availableBooks }}</strong>
+    </article>
+
+    <article class="kpi-card">
+      <span>Emprestados</span>
+      <strong>{{ loanedBooks }}</strong>
+    </article>
+
+    <article class="kpi-card">
+      <span>Categorias</span>
+      <strong>{{ categoriesCount }}</strong>
+    </article>
+  </section>
+</section>
