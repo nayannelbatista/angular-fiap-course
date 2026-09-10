@@ -1,0 +1,58 @@
+<section class="loans-page">
+  <header class="loans-hero">
+    <span class="eyebrow">Acervo</span>
+    <h1>Empréstimos</h1>
+    <p>Selecione um livro disponível e registre o empréstimo.</p>
+  </header>
+
+  <div class="loans-grid">
+    <mat-card class="loan-card">
+      <h2>Disponíveis</h2>
+
+      <div class="book-list">
+        @for (book of booksState.availableBooks(); track book.id) {
+          <div class="book-item">
+            <span>{{ book.title }}</span>
+            <button
+              class="btn-select"
+              [disabled]="selectedBookId() === book.id"
+              (click)="selectBook(book.id)"
+            >
+              Selecionar
+            </button>
+          </div>
+        } @empty {
+          <p class="empty-state">Nenhum livro disponível.</p>
+        }
+      </div>
+
+      <button
+        class="btn-register"
+        [disabled]="!selectedBookId()"
+        (click)="registerLoan()"
+      >
+        Registrar empréstimo
+      </button>
+    </mat-card>
+
+    <mat-card class="loan-card">
+      <h2>Emprestados</h2>
+
+      <div class="book-list">
+        @for (book of booksState.loanedBooks(); track book.id) {
+          <div class="book-item">
+            <span>{{ book.title }}</span>
+            <button
+              class="btn-return"
+              (click)="booksState.toggleAvailability(book.id)"
+            >
+              Devolver
+            </button>
+          </div>
+        } @empty {
+          <p class="empty-state">Nenhum livro emprestado.</p>
+        }
+      </div>
+    </mat-card>
+  </div>
+</section>

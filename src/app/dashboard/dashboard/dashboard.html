@@ -13,7 +13,7 @@
   <section class="hero-card">
     <div>
       <span class="eyebrow">Panorama atual</span>
-      <h2>{{ booksState.availableBooks() }} livros disponíveis para empréstimo</h2>
+      <h2>{{ booksState.availableBooksCount() }} livros disponíveis para empréstimo</h2>
       <p>
         O acervo possui {{ booksState.totalBooks() }} livros distribuídos em
         {{ booksState.categoriesCount() }} categorias.
@@ -29,12 +29,12 @@
 
     <article class="kpi-card">
       <span>Disponíveis</span>
-      <strong>{{ booksState.availableBooks() }}</strong>
+      <strong>{{ booksState.availableBooksCount() }}</strong>
     </article>
 
     <article class="kpi-card">
       <span>Emprestados</span>
-      <strong>{{ booksState.loanedBooks() }}</strong>
+      <strong>{{ booksState.loanedBooksCount() }}</strong>
     </article>
 
     <article class="kpi-card">

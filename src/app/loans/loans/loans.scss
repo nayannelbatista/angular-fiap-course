@@ -1,0 +1,136 @@
+:host {
+  display: block;
+}
+
+.loans-page {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.loans-hero {
+  padding: 1.5rem;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ffffff, #f8fafc);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+}
+
+.loans-hero h1 {
+  margin: 0;
+  font-size: 1.9rem;
+  line-height: 1.1;
+  color: #0f172a;
+}
+
+.loans-hero p {
+  margin: 0.65rem 0 0;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.loans-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.loan-card {
+  padding: 1.25rem;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.03);
+}
+
+.loan-card h2 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  color: #0f172a;
+}
+
+.book-list {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.book-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.book-item span {
+  font-size: 0.92rem;
+  color: #334155;
+}
+
+.book-item button {
+  padding: 0.35rem 0.85rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.book-item button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.btn-select {
+  background: #ede9fe;
+  color: #4f46e5;
+}
+
+.btn-return {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.btn-register {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.btn-register:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.empty-state {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+@media (max-width: 768px) {
+  .loans-grid {
+    grid-template-columns: 1fr;
+  }
+}

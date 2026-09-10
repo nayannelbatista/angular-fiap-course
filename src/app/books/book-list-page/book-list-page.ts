@@ -1,8 +1,9 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { Book } from '../book';
 import { BooksService } from '../books.service';
 import { BookFilter } from "../book-filter/book-filter";
 import { BookTable } from '../book-table/book-table';
+import { BooksState } from '../books-state';
 
 @Component({
   selector: 'app-book-list-page',
@@ -14,28 +15,26 @@ import { BookTable } from '../book-table/book-table';
   styleUrl: './book-list-page.scss',
 })
 export class BookListPage implements OnInit {
-  private booksService = inject(BooksService);
+  private booksState = inject(BooksState);
 
   books = signal<Book[]>([]);
-  categories = signal<string[]>([]);
+  categories = computed(() => [...new Set(this.booksState.books().map(b => b.category))]);
   searchTerm = signal<string>('');
   selectedCategory = signal<string>('all');
 
   ngOnInit() {
-    const books = this.booksService.getAllBooks();
-    this.books.set(books);
-    this.categories.set([...new Set(this.books().map(b => b.category))]);
+    this.booksState.loadBooks();
   }
 
-  get filteredBooks(): Book[] {
+  readonly filteredBooks = computed(() => {
     const search = this.searchTerm().toLowerCase().trim();
     const category = this.selectedCategory();
-    return this.books().filter(book => {
+    return this.booksState.books().filter(book => {
       const matchesSearch =
         !search || book.title.toLowerCase().includes(search);
       const matchesCategory =
         category === 'all' || book.category === category;
       return matchesSearch && matchesCategory;
     });
-  }
+  })
 }

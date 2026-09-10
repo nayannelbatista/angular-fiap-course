@@ -14,11 +14,14 @@ export class BooksState {
 
   readonly categoriesCount = computed(() => new Set(this.books().map((b) => b.category)).size);
 
-  readonly availableBooks = computed(() => this.books().filter((b) => b.available).length);
+  readonly availableBooksCount = computed(() => this.books().filter((b) => b.available).length);
+  readonly availableBooks = computed(() => this.books().filter((b) => b.available));
 
-  readonly loanedBooks = computed(() => this.books().filter((b) => !b.available).length);
+  readonly loanedBooksCount = computed(() => this.books().filter((b) => !b.available).length);
+  readonly loanedBooks = computed(() => this.books().filter((b) => !b.available));
 
   loadBooks() {
+    if (this.books().length > 0) return;
     const books = this.booksService.getAllBooks();
     this.books.set(books);
   }
@@ -41,10 +44,16 @@ export class BooksState {
 
   readonly availabilityStats = computed(() => {
     const total = this.totalBooks();
-    const available = this.availableBooks();
+    const available = this.availableBooksCount();
 
     return {
       availablePercent: total ? Math.round((available / total) * 100) : 0,
     };
   });
+
+  toggleAvailability(id: string) {
+    this.books.update((books) =>
+      books.map((b) => (b.id === id ? { ...b, available: !b.available } : b)),
+    );
+  }
 }
