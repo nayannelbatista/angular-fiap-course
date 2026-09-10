@@ -1,36 +1,26 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 import { BooksState } from '../../books/books-state';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [MatCardModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })
-export class Dashboard implements OnInit{
+export class Dashboard implements OnInit {
   readonly booksState = inject(BooksState);
 
   ngOnInit() {
     this.booksState.loadBooks();
   }
 
-  get books() {
-    return this.booksState.books();
-  }
+  readonly availabilityChart = computed(() => {
+    const percent = this.booksState.availabilityStats().availablePercent;
 
-  get totalBooks(): number {
-    return this.books.length;
-  }
-
-  get categoriesCount(): number {
-    return new Set(this.books.map((b) => b.category)).size;
-  }
-
-  get availableBooks(): number {
-    return this.books.filter((b) => b.available).length;
-  }
-
-  get loanedBooks(): number {
-    return this.books.filter((b) => !b.available).length;
-  }
+    return `conic-gradient(
+    #4f46e5 0% ${percent}%,
+    #e2e8f0 ${percent}% 100%
+  )`;
+  });
 }
