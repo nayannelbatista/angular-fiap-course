@@ -1,6 +1,7 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
 import { BooksState } from '../../books/books-state';
 import { MatCardModule } from '@angular/material/card';
+import { AuthService } from '../../users/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class Dashboard implements OnInit {
   readonly booksState = inject(BooksState);
+  readonly authService = inject(AuthService);
 
   ngOnInit() {
     this.booksState.loadBooks();
