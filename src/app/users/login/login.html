@@ -1,0 +1,41 @@
+<section class="login-page">
+  <mat-card class="login-card">
+    <header class="login-header">
+      <h1>Library Admin</h1>
+      <p>Acesso ao sistema da biblioteca</p>
+    </header>
+
+    <div class="form-field">
+      <label for="email">E-mail</label>
+      <input
+        id="email"
+        type="email"
+        [(ngModel)]="email"
+        placeholder="admin@library.com"
+      />
+    </div>
+
+    <div class="form-field">
+      <label for="password">Senha</label>
+      <input
+        id="password"
+        type="password"
+        [(ngModel)]="password"
+        placeholder="123456"
+      />
+    </div>
+
+    @if (authService.loginError()) {
+      <p class="error-message">{{ authService.loginError() }}</p>
+    }
+
+    <button
+      type="button"
+      [disabled]="!email().trim() || !password().trim() || authService.isLoading()"
+      (click)="submit()"
+    >
+      Entrar
+    </button>
+  </mat-card>
+</section>
+

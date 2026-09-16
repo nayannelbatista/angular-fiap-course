@@ -28,7 +28,7 @@
   margin-bottom: 0.75rem;
 
   h1 {
-    display: block;
+    margin: 0;
     color: var(--shell-text);
     font-size: 1rem;
     line-height: 1.2;
@@ -56,18 +56,56 @@
 }
 
 .shell-toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  border-bottom: 1px solid var(--shell-border);
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  color: var(--shell-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-inline: 1.5rem;
 }
 
-.toolbar-title {
-  margin-left: 0.5rem;
-  font-weight: 600;
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+.toolbar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toolbar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--shell-text-muted);
+  white-space: nowrap;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logout-button {
+  border: none;
+  background: transparent;
+  color: var(--shell-text-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.2rem 0.35rem;
+  line-height: 1;
+
+  &:hover {
+    color: var(--shell-accent);
+    text-decoration: underline;
+  }
 }
 
 mat-nav-list {

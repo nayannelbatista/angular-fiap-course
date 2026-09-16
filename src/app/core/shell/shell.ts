@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
+import { AuthService } from '../../users/auth.service';
 
 @Component({
   selector: 'app-shell',
@@ -22,5 +23,11 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
   styleUrl: './shell.scss',
 })
 export class Shell {
+  readonly authService = inject(AuthService);
+  private router = inject(Router);
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 }

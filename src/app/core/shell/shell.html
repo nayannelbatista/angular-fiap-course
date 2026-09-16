@@ -9,29 +9,36 @@
     </div>
 
     <mat-nav-list>
-        <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link">
-          <mat-icon matListItemIcon>dashboard</mat-icon>
-          <span matListItemTitle>Dashboard</span>
-        </a>
-        <a mat-list-item routerLink="/books" routerLinkActive="active-link">
-          <mat-icon matListItemIcon>menu_book</mat-icon>
-          <span matListItemTitle>Acervo</span>
-        </a>
-        <a mat-list-item routerLink="/loans" routerLinkActive="active-link">
-          <mat-icon matListItemIcon>assignment_return</mat-icon>
-          <span matListItemTitle>Empréstimos</span>
-        </a>
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        <span matListItemTitle>Dashboard</span>
+      </a>
+      <a mat-list-item routerLink="/books" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>menu_book</mat-icon>
+        <span matListItemTitle>Acervo</span>
+      </a>
+      <a mat-list-item routerLink="/loans" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>assignment_return</mat-icon>
+        <span matListItemTitle>Empréstimos</span>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
     <mat-toolbar class="shell-toolbar">
-      <button matIconButton (click)="sidenav.toggle()" aria-label="Menu de navegaçāo">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span class="toolbar-title">Library Admin</span>
+      <div class="toolbar-left">
+        <button matIconButton (click)="sidenav.toggle()" aria-label="Menu de navegaçāo">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="toolbar-title">Library Admin</span>
+      </div>
+      <div class="toolbar-user">
+        <span class="user-name">
+          {{ authService.currentUser()?.name }}
+        </span>
+        <button type="button" class="logout-button" (click)="logout()">Sair</button>
+      </div>
     </mat-toolbar>
-
     <main class="shell-content">
       <router-outlet />
     </main>
