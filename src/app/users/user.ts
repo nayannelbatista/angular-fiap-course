@@ -5,3 +5,5 @@ export interface User {
   password: string;
   role: 'admin' | 'assistant';
 }
+
+export type SessionUser = Omit<User, 'password'>;
